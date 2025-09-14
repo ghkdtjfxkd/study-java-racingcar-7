@@ -23,13 +23,8 @@ public class RaceEventHandler {
     }
 
     private void handleUserInputLapCount(InputEvents.UserEnteredLapCount event) {
-        try {
-            raceService.startRace(event.input());
-            eventBus.publish(new RaceEvents.LapIsLeft());
-        } catch (IllegalArgumentException e) {
-            System.err.println(e.getMessage());
-            eventBus.shutdown();
-        }
+        raceService.startRace(event.input());
+        eventBus.publish(new RaceEvents.LapIsLeft());
     }
 
     private void handleLapCompleted(LapEvents.LapCompleted lapCompleted) {
